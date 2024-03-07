@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Look for an executable called tensorflow_cc
-find_path(CHECK_INCLUDE_FILE_CXX 
+find_path(ROCAL_INCLUDE_DIR 
     NAMES rocal_api.h
     PATHS /opt/vcpkg/x64-linux-dynamic/include/rocal/ 
 )
@@ -23,7 +23,7 @@ find_library(ROCAL_LIBRARIES
     PATHS /opt/vcpkg/x64-linux-dynamic/lib/
 )
 
-if(CHECK_INCLUDE_FILE_CXX AND ROCAL_LIBRARIES)
+if(ROCAL_INCLUDE_DIR AND ROCAL_LIBRARIES)
     set(rocal_FOUND)
 endif()
 

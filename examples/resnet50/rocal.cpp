@@ -64,7 +64,7 @@ Images loadImages(const std::vector<std::string>& paths) {
 
       std::vector<unsigned char> buffer(size);
       if (!file.read(reinterpret_cast<char*>(buffer.data()), size)) {
-        throw std::runtime_error("Failed to read file: " + path);
+        throw amdinfer::file_read_error("Failed to read file: " + path);
       }
 
       imageBuffer.push_back(std::move(buffer));

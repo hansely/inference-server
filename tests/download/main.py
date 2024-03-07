@@ -238,9 +238,6 @@ def get_parser(parser=None):
     backends.add_argument(
         "--migraphx", action="store_true", help="download all migraphx-related files"
     )
-    backends.add_argument(
-        "--rocal", action="store_true", help="download all rocal-related files"
-    )
 
     models = parser.add_argument_group("Models")
     models.add_argument(
