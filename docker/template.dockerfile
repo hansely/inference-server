@@ -284,7 +284,6 @@ RUN if [[ ${ENABLE_VITIS} == "yes" ]]; then \
     && cp dist/fpga_util ${COPY_DIR}/usr/local/bin/fpga-util; \
     fi
 
-FROM migraphx_installer_${ENABLE_MIGRAPHX} AS vcpkg_builder
 FROM rocal_installer_${ENABLE_ROCAL} AS vcpkg_builder
 
 ARG ENABLE_VITIS
