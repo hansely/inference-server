@@ -225,15 +225,6 @@ RUN rm -rf ${COPY_DIR} && mkdir ${COPY_DIR} && mkdir -p ${MANIFESTS_DIR}
 
 $[BUILD_PTZENDNN]
 
-FROM common_builder AS rocal_builder
-
-ARG COPY_DIR
-ARG MANIFESTS_DIR
-WORKDIR /tmp
-
-# delete any inherited artifacts and recreate
-RUN rm -rf ${COPY_DIR} && mkdir ${COPY_DIR} && mkdir -p ${MANIFESTS_DIR}
-
 FROM tfzendnn_installer_${ENABLE_TFZENDNN} AS ptzendnn_installer_no
 
 FROM tfzendnn_installer_${ENABLE_TFZENDNN} AS ptzendnn_installer_yes
@@ -259,7 +250,7 @@ FROM migraphx_installer_${ENABLE_MIGRAPHX} AS rocal_installer_yes
 ARG COPY_DIR
 ENV AMDINFER_ENABLE_ROCAL=ON
 
-$[BUILD_ROCAL]
+$[INSTALL_ROCAL]
 
 FROM common_builder AS builder_dev
 

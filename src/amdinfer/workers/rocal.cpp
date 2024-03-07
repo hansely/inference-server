@@ -104,10 +104,10 @@ class RocalWorker : public SingleThreadedWorker {
   // 0 - External File Mode
   // 1 - Raw Compressed Mode
   // 2 - Raw Uncompressed Mode
-  const int rocal_external_mode_ = 1;
+  RocalExternalSourceMode rocal_external_mode_ = ROCAL_EXTSOURCE_RAW_COMPRESSED;
 
-  // Decode width & height
-  const int decode_width_ = 1000, decode_height_ = 1000; 
+  // Maximum decode width & height
+  const int max_decode_width_ = 1000, max_decode_height_ = 1000; 
 
   // ROI values for input image
   std::vector<ROIxywh> ROI_xywh_;
@@ -127,6 +127,7 @@ std::vector<MemoryAllocators> RocalWorker::getAllocators() const {
 
 std::vector<float> RocalWorker::parseVector(const rapidjson::Value& jsonArray) {
     std::vector<float> result;
+    result.reserve(jsonArray.Size());
     for (const auto& element : jsonArray.GetArray()) {
         result.push_back(element.GetFloat());
     }
@@ -167,7 +168,7 @@ void RocalWorker::deserialize(const std::string& model_path) {
   }
 
   [[maybe_unused]]RocalTensor input = rocalJpegExternalFileSource(handle_, RocalImageColor::ROCAL_COLOR_RGB24, false, 
-      false, false, ROCAL_USE_USER_GIVEN_SIZE, decode_width_, decode_height_, RocalDecoderType::ROCAL_DECODER_TJPEG, RocalExternalSourceMode(rocal_external_mode_));
+      false, false, ROCAL_USE_USER_GIVEN_SIZE, max_decode_width_, max_decode_height_, RocalDecoderType::ROCAL_DECODER_TJPEG, rocal_external_mode_);
       
   if (rocalGetStatus(this->handle_) != ROCAL_OK) {
       std::string errorMessage = "JPEG source could not be initialized\n" + std::string(rocalGetErrorMessage(this->handle_)); 

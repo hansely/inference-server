@@ -627,7 +627,7 @@ def install_migraphx(manager: PackageManager, custom_backends):
             {code_indent(manager.clean, 12)}"""
     )
 
-def build_rocal(manager: PackageManager, custom_backends):
+def install_rocal(manager: PackageManager, custom_backends):
     amdgpu_install_deb = "apt install -y ./amdgpu-install_6.0.60002-1_all.deb"
     amdgpu_install_rocm = "DEBIAN_FRONTEND=noninteractive amdgpu-install -y --usecase=graphics,rocm --no-32 --no-dkms" # no-dkms flag for intalling rocm inside docker
 
@@ -912,11 +912,11 @@ def generate(args: argparse.Namespace):
 
     if args.custom_backends:
         dockerfile = dockerfile.replace(
-            "$[BUILD_ROCAL]", build_rocal(manager, custom_backends)
+            "$[INSTALL_ROCAL]", install_rocal(manager, custom_backends)
         )
     else:
         dockerfile = dockerfile.replace(
-            "$[BUILD_ROCAL]", build_rocal(manager, None)
+            "$[INSTALL_ROCAL]", install_rocal(manager, None)
         )
 
     dockerfile = dockerfile.replace(
