@@ -628,8 +628,12 @@ def install_migraphx(manager: PackageManager, custom_backends):
     )
 
 def install_rocal(manager: PackageManager, custom_backends):
+    if manager.name == "yum":
+        raise ValueError(f"rocAL installation not supported with : {manager.name}")
+    
     amdgpu_install_deb = "apt install -y ./amdgpu-install_6.0.60002-1_all.deb"
-    amdgpu_install_rocm = "DEBIAN_FRONTEND=noninteractive amdgpu-install -y --usecase=graphics,rocm --no-32 --no-dkms" # no-dkms flag for intalling rocm inside docker
+    # no-dkms flag for intalling rocm inside docker
+    amdgpu_install_rocm = "DEBIAN_FRONTEND=noninteractive amdgpu-install -y --usecase=graphics,rocm --no-32 --no-dkms"
 
     return textwrap.dedent(
         f"""\

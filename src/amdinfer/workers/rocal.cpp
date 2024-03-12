@@ -18,7 +18,7 @@
  */
 
 #include <opencv2/opencv.hpp>     // for opencv
-#include "rocal_api.h"            // for rocal
+#include "rocal/rocal_api.h"            // for rocal
 #include "rapidjson/document.h"       // for rapidjson
 #include "rapidjson/istreamwrapper.h" // for rapidjson
 
