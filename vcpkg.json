@@ -44,7 +44,8 @@
       ]
     },
     { 
-      "name": "ffmpeg"
+      "name": "ffmpeg",
+      "version>=": "4.4"
     },
     {
       "name": "tomlplusplus",
@@ -136,9 +137,9 @@
     "rocal": {
       "description": "Enable rocAL backend",
       "dependencies": [
-        { 
-          "name": "ffmpeg",
-          "version>=": "4.4"
+        {
+          "name": "rocal",
+          "version>=": "1.0.0"
         }
       ]
     },
@@ -168,6 +169,10 @@
     {
       "name": "trantor",
       "version": "1.5.11#2"
+    },
+    { 
+      "name": "ffmpeg",
+      "version": "4.4"
     },
     {
       "name": "vcpkg-tool-meson",

@@ -373,18 +373,13 @@ BatchPtr RocalWorker::doRun(Batch* batch, [[maybe_unused]]const MemoryPool* pool
   RocalTensorList output_tensor_list = rocalGetOutputTensors(handle_);
   assert(output_tensor_list->size() == batch->size());
 
-  // RocalTensor output_tensor = output_tensor_list->at(0);
-
-  // unsigned char *out_buffer = nullptr;
-  // float * out_buffer_f = static_cast<float *>output_tensor->buffer();
   size_t max_decoded_size = 0;
   for (unsigned int j = 0; j < batch->size(); j++) {
       const auto & output_tensor = output_tensor_list->at(j);
-      // const int n = output_tensor->dims().at(0);
       const int h = output_tensor->dims().at(1);
       const int w = output_tensor->dims().at(2);
       const int c = output_tensor->dims().at(3);
-      // std::cout << n << " " << c << " " << height << " " << width << " " << std::endl;
+
       size_t decoded_size = output_tensor->data_size();
       if (decoded_size > max_decoded_size) {
           max_decoded_size = decoded_size;
