@@ -633,7 +633,7 @@ def install_rocal(manager: PackageManager, custom_backends):
     
     amdgpu_install_deb = "apt install -y ./amdgpu-install_6.1.60100-1_all.deb"
     # no-dkms flag for intalling rocm inside docker
-    amdgpu_install_rocm = "DEBIAN_FRONTEND=noninteractive amdgpu-install -y --usecase=graphics,rocm --no-32 --no-dkms"
+    amdgpu_install_rocm = "DEBIAN_FRONTEND=noninteractive amdgpu-install -y --usecase=rocm --no-dkms"
 
     return textwrap.dedent(
         f"""\

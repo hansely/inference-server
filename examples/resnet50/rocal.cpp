@@ -129,8 +129,9 @@ std::string load(const amdinfer::Client* client, const Args& args) {
   // server will attempt to coalesce incoming requests into a single batch of
   // this size and pass it all to the backend.
   parameters.put("batch", args.batch_size);
-  // Optional: specifies how long the batcher should wait for more requests
-  // before sending the batch on
+  // Optional: specifies color format of the input image(s). Available options
+  // are RGB24(default) / BGR24 / U8. 
+  parameters.put("color_format", "RGB24");
   std::string endpoint = client->workerLoad("rocal", parameters);
   amdinfer::waitUntilModelReady(client, endpoint);
   // -load
