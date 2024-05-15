@@ -138,10 +138,32 @@
       "description": "Enable rocAL backend",
       "dependencies": [
         {
-          "name": "rocal",
-          "version>=": "1.0.0"
+            "name": "half",
+            "version>=": "2.2.0"
+        },
+        {
+            "name": "protobuf",
+            "version>=": "3.19.4"
+        },
+        {
+            "name": "lmdb"
+        },
+        {
+            "name": "rapidjson"
+        },
+        {
+            "name": "libjpeg-turbo",
+            "version>=": "3.0.1"
+        },
+        {
+            "name": "ffmpeg",
+            "version>=": "4.4"
+        },
+        {
+            "name": "rocal",
+            "version>=": "1.0"
         }
-      ]
+    ]
     },
     "testing": {
       "description": "Enable testing",

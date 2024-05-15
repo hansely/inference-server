@@ -26,7 +26,6 @@ vcpkg_cmake_configure(
   OPTIONS
     -DBACKEND=CPU
     -DBUILD_PYPACKAGE=OFF
-  JOBS 8
 )
 # cmake-format: on
 
