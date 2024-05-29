@@ -361,6 +361,7 @@ BatchPtr RocalWorker::doRun(Batch* batch, [[maybe_unused]]const MemoryPool* pool
 
       assert(input_shape.size() == 1); // compressed raw buffer should have shape length = 1
       ROI_xywh_[j].h = input_shape[0];
+
       input_type = input.getDatatype();
       std::cout << "data type is : " << input_type.str() << std::endl;
       if (input.getDatatype() != amdinfer::DataType::Uint8) {
@@ -405,6 +406,7 @@ BatchPtr RocalWorker::doRun(Batch* batch, [[maybe_unused]]const MemoryPool* pool
       const int h = output_tensor->dims().at(1);
       const int w = output_tensor->dims().at(2);
       const int c = output_tensor->dims().at(3);
+
       size_t decoded_size = output_tensor->data_size();
       if (decoded_size > max_decoded_size) {
           max_decoded_size = decoded_size;

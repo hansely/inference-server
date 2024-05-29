@@ -129,8 +129,9 @@ std::string load(const amdinfer::Client* client, const Args& args) {
   // server will attempt to coalesce incoming requests into a single batch of
   // this size and pass it all to the backend.
   parameters.put("batch", args.batch_size);
-  // Optional: specifies how long the batcher should wait for more requests
-  // before sending the batch on
+  // Optional: specifies color format of the input image(s). Available options
+  // are RGB24(default) / BGR24 / U8. 
+  parameters.put("color_format", "RGB24");
   std::string endpoint = client->workerLoad("rocal", parameters);
   amdinfer::waitUntilModelReady(client, endpoint);
   // -load
@@ -228,10 +229,6 @@ int main(int argc, char* argv[]) {
         response.getOutputs();
       // for rocAL, we expect a output tensor size = num_requests
       assert(outputs.size() == num_requests);
-      // auto output = outputs[0];
-      // cv::Mat image(224, 224, CV_8UC3, static_cast<unsigned char*>(output.getData()));
-      // cv::imshow("decoded_image", image);
-      // cv::waitKey(0);
     }
     // -validate:
     auto stop = std::chrono::high_resolution_clock::now();
